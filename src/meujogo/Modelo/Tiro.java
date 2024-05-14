@@ -20,7 +20,7 @@ public class Tiro {
     }
 
     public void load() {
-        ImageIcon referencia = new ImageIcon("res\\tiro.png");
+        ImageIcon referencia = new ImageIcon("res\\kk.png");
         imagem = referencia.getImage();
 
         this.width = imagem.getWidth(null);

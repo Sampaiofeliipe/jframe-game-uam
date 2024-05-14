@@ -19,7 +19,7 @@ public container(){
     setSize(1024,728);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setLocationRelativeTo   (null);
-    this.setResizable(false);
+    this.setResizable(true);
     setVisible(true);
     
 }

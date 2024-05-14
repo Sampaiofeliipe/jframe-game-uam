@@ -46,11 +46,11 @@ public class Player {
         }
 
         if(codigo == KeyEvent.VK_UP) {
-            dy = 3;
+            dy = -3;
         }
 
         if(codigo == KeyEvent.VK_DOWN) {
-            dy = -3;
+            dy = 3;
         }
 
         if(codigo == KeyEvent.VK_LEFT) {
