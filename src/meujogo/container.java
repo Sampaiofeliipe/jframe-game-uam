@@ -16,7 +16,7 @@ public class container extends JFrame {
 public container(){
     add(new Fase());
     setTitle("touhou invaders");
-    setSize(1920,1080);
+    setSize(1024,728);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setLocationRelativeTo   (null);
     this.setResizable(false);

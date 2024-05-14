@@ -2,6 +2,9 @@ package meujogo.Modelo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
+
 import java.awt.event.KeyEvent;
 
 public class Player {
@@ -10,10 +13,13 @@ public class Player {
     private int dx, dy;
     private Image images;
     private int height, width;
+    private List <Tiro> tiros;
 
     public Player() {
         this.x = 100;
         this.y = 100;
+
+        tiros = new ArrayList<Tiro>();
     }
 
     public void load() {
@@ -28,8 +34,16 @@ public class Player {
         y += dy;
     }
 
+    public void tiroSimples() {
+        this.tiros.add(new Tiro(x+width,y+(height/2)));
+    }
+
     public void keyPressed(KeyEvent tecla){
         int codigo = tecla.getKeyCode();
+
+        if(codigo == KeyEvent.VK_A) {
+            tiroSimples();
+        }
 
         if(codigo == KeyEvent.VK_UP) {
             dy = 3;
@@ -81,4 +95,9 @@ public class Player {
     public Image getImagem() {
         return images;
     }
+
+    public List<Tiro> getTiros() {
+        return tiros;
+    }
+    
 }

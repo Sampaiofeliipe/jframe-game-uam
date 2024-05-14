@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.util.List;
 
 
 /**
@@ -28,7 +29,7 @@ public class Fase extends JPanel implements ActionListener{
         setFocusable(true);
         setDoubleBuffered(true);
 
-        ImageIcon reference = new ImageIcon("res\\background.png");
+        ImageIcon reference = new ImageIcon("res\\gamebackground.png");
         fundo = reference.getImage();
 
         player = new Player();
@@ -44,24 +45,43 @@ public class Fase extends JPanel implements ActionListener{
         Graphics2D graficos = (Graphics2D) g;
         graficos.drawImage(fundo, 0, 0, null);
         graficos.drawImage(player.getImagem(), player.getX(), player.getY(), this );
+        
+        List<Tiro> tiros = player.getTiros();
+        for(int i  = 0; i < tiros.size(); i++) {
+            Tiro m = tiros.get(i);
+            m.load();
+            graficos.drawImage(m.getImagem(), m.getX(),m.getY(), this);
+        }
+
         g.dispose();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         player.update();
+        List<Tiro> tiros = player.getTiros();
+        for(int i  = 0; i < tiros.size(); i++) {
+            Tiro m = tiros.get(i);
+                if(m.isVisivel()) {
+                    m.update();
+                } else {
+                    tiros.remove(i);
+                }
+        }
+
         repaint();
     }
 
     private class TecladoAdapter extends KeyAdapter {
-
-        public void KeyPressed(KeyEvent e){
-            player.keyPressed(e);
+        
+        @Override
+        public void keyPressed(KeyEvent teclado){
+            player.keyPressed(teclado);
         }
 
-
-        public void KeyRelease(KeyEvent e){
-            player.keyPressed(e);
+        @Override
+        public void keyReleased(KeyEvent teclado){
+            player.keyRelease(teclado);
         }
     }
 }
